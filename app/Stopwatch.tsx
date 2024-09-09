@@ -6,12 +6,10 @@ const Stopwatch = () => {
   const [time, setTime] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
   const [isVisible, setIsVisible] = useState(true); // Controls visibility of the div
-  const [isAnimating, setIsAnimating] = useState(true);
   useEffect(() => {
     let hideTimeout: NodeJS.Timeout | null = null;
 
     const handleMouseMove = () => {
-      setIsAnimating(true);
       setTimeout(() => {
         setIsVisible(true);
       }, 250);
@@ -24,9 +22,6 @@ const Stopwatch = () => {
       // Hide the div after 3 seconds of inactivity
       hideTimeout = setTimeout(() => {
         setIsVisible(false);
-        setTimeout(() => {
-          setIsAnimating(false);
-        }, 250);
       }, 3000); // Adjust time here for inactivity duration
     };
 
