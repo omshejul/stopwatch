@@ -7,7 +7,7 @@ const Stopwatch = () => {
   const [time, setTime] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
   const [isVisible, setIsVisible] = useState(true); // Controls visibility of the div
-  
+
   useEffect(() => {
     const userAgent = navigator.userAgent;
     const isMobileDevice = /Mobi|Android/i.test(userAgent); // Mobile device detection
@@ -75,7 +75,11 @@ const Stopwatch = () => {
 
   return (
     <div className="text-center">
-      <div className={`flex gap-4 justify-center items-center flex-row text-4xl ${isVisible && isDesktop?'text-5xl':'text-7xl translate-y-10 '} transition-all duration-250 ease-in-out mb-6`}>
+      <div
+        className={`flex gap-4 justify-center items-center flex-row text-4xl ${
+          isVisible && isDesktop ? "text-5xl" : "text-7xl translate-y-10 "
+        } transition-all duration-250 ease-in-out mb-6`}
+      >
         <div className="hour  md:w-24">
           {("0" + Math.floor((time / 60000) % 60)).slice(-2)}
         </div>
@@ -85,15 +89,20 @@ const Stopwatch = () => {
           {("0" + Math.floor((time / 1000) % 60)).slice(-2)}
         </div>
         <span className="text-gray-500">:</span>
-        <div className="sec  md:w-24"> {("0" + ((time / 10) % 100)).slice(-2)}</div>
+        <div className="sec  md:w-24">
+          {" "}
+          {("0" + ((time / 10) % 100)).slice(-2)}
+        </div>
       </div>
       <div
-        className={` ${isVisible && isDesktop ? "" : "scale-0 "} transition-all duration-250 ease-in-out flex gap-4 justify-center items-center flex-row`}
+        className={` ${
+          isVisible && isDesktop ? "" : "scale-0 "
+        } transition-all duration-250 ease-in-out flex gap-4 justify-center items-center flex-row`}
       >
         {isRunning ? (
           <button
             onClick={stopStopwatch}
-            className="gap-2 rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
+            className="gap-2  rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
           >
             <Image
               className="dark:invert"
@@ -102,7 +111,7 @@ const Stopwatch = () => {
               width={24}
               height={24}
             />
-            Stop
+            <span className="font-bold">Stop</span>
           </button>
         ) : (
           <button
@@ -116,7 +125,7 @@ const Stopwatch = () => {
               width={24}
               height={24}
             />
-            Start
+            <span className="font-bold">Start</span>
           </button>
         )}
 
@@ -132,7 +141,7 @@ const Stopwatch = () => {
               width={20}
               height={20}
             />
-            Reset
+            <span className="font-bold">Reset</span>
           </button>
         )}
       </div>
