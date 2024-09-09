@@ -3,9 +3,17 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 
 const Stopwatch = () => {
+  const [isDesktop, setIsDesktop] = useState(false);
   const [time, setTime] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
   const [isVisible, setIsVisible] = useState(true); // Controls visibility of the div
+  
+  useEffect(() => {
+    const userAgent = navigator.userAgent;
+    const isMobileDevice = /Mobi|Android/i.test(userAgent); // Mobile device detection
+    setIsDesktop(!isMobileDevice); // If it's not mobile, it's desktop
+  }, []);
+
   useEffect(() => {
     let hideTimeout: NodeJS.Timeout | null = null;
 
@@ -67,7 +75,7 @@ const Stopwatch = () => {
 
   return (
     <div className="text-center">
-      <div className={`flex gap-4 justify-center items-center flex-row text-4xl ${isVisible?'md:text-5xl':'md:text-7xl md:translate-y-10 '} transition-all duration-250 ease-in-out mb-6`}>
+      <div className={`flex gap-4 justify-center items-center flex-row text-4xl ${isVisible && isDesktop?'text-5xl':'text-7xl translate-y-10 '} transition-all duration-250 ease-in-out mb-6`}>
         <div className="hour  md:w-24">
           {("0" + Math.floor((time / 60000) % 60)).slice(-2)}
         </div>
@@ -80,7 +88,7 @@ const Stopwatch = () => {
         <div className="sec  md:w-24"> {("0" + ((time / 10) % 100)).slice(-2)}</div>
       </div>
       <div
-        className={` ${isVisible ? "" : " md:scale-0 "} transition-all duration-250 ease-in-out flex gap-4 justify-center items-center flex-row`}
+        className={` ${isVisible && isDesktop ? "" : "scale-0 "} transition-all duration-250 ease-in-out flex gap-4 justify-center items-center flex-row`}
       >
         {isRunning ? (
           <button
