@@ -76,8 +76,8 @@ const Stopwatch = () => {
   return (
     <div className="text-center">
       <div
-        className={`flex gap-4 justify-center items-center flex-row text-4xl ${
-          isVisible && isDesktop ? "text-5xl" : "text-7xl translate-y-10 "
+        className={`flex gap-2 justify-center items-center flex-row text-4xl ${
+          isDesktop ? (isVisible ? "text-5xl" : "text-7xl translate-y-10 "):""
         } transition-all duration-250 ease-in-out mb-6`}
       >
         <div className="hour  md:w-24">
@@ -94,36 +94,41 @@ const Stopwatch = () => {
           {("0" + ((time / 10) % 100)).slice(-2)}
         </div>
       </div>
+      {/* <span>
+        v:{isVisible?"1":"0" }D:{ isDesktop?"1":"0"}
+      </span> */}
       <div
         className={` ${
-          isVisible && isDesktop ? "" : "scale-0 "
+          isDesktop ? (isVisible? "" : "scale-0 "):""
         } transition-all duration-250 ease-in-out flex gap-4 justify-center items-center flex-row`}
       >
         {isRunning ? (
           <button
             onClick={stopStopwatch}
-            className="gap-2  rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-          >
+            className="gap-2 rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center md:hover:bg-[#f2f2f2] md:dark:hover:bg-[#1a1a1a] md:hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
+            >
             <Image
               className="dark:invert"
               src="/icons/stop.svg"
               alt="Vercel logomark"
               width={24}
               height={24}
+              priority
             />
             <span className="font-bold">Stop</span>
           </button>
         ) : (
           <button
             onClick={startStopwatch}
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-          >
+            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 md:hover:bg-[#383838] md:dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
+            >
             <Image
               className="dark:invert"
               src="/icons/play.svg"
               alt="Vercel logomark"
               width={24}
               height={24}
+              priority
             />
             <span className="font-bold">Start</span>
           </button>
@@ -132,14 +137,15 @@ const Stopwatch = () => {
         {!isRunning && time > 0 && (
           <button
             onClick={resetStopwatch}
-            className="gap-2 rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-          >
+            className="gap-2 rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center md:hover:bg-[#f2f2f2] md:dark:hover:bg-[#1a1a1a] md:hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
+            >
             <Image
               className="dark:invert"
               src="/icons/restart.svg"
               alt="Vercel logomark"
               width={20}
               height={20}
+              priority
             />
             <span className="font-bold">Reset</span>
           </button>
