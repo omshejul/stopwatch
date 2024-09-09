@@ -72,17 +72,17 @@ const Stopwatch = () => {
 
   return (
     <div className="text-center">
-      <div className={`flex gap-4 justify-center items-center flex-row ${isVisible?'text-5xl':'text-7xl translate-y-10'} transition-all duration-250 ease-in-out   mb-6`}>
-        <div className="hour w-24">
+      <div className={`flex gap-4 justify-center items-center flex-row ${isVisible?'text:2xl md:text-5xl':'md:text-7xl translate-y-10 text-3xl'} transition-all duration-250 ease-in-out   mb-6`}>
+        <div className="hour  md:w-24">
           {("0" + Math.floor((time / 60000) % 60)).slice(-2)}
         </div>
         <span className="text-gray-500">:</span>
-        <div className="min w-24">
+        <div className="min  md:w-24">
           {" "}
           {("0" + Math.floor((time / 1000) % 60)).slice(-2)}
         </div>
         <span className="text-gray-500">:</span>
-        <div className="sec w-24"> {("0" + ((time / 10) % 100)).slice(-2)}</div>
+        <div className="sec  md:w-24"> {("0" + ((time / 10) % 100)).slice(-2)}</div>
       </div>
       <div
         className={` ${isVisible ? "" : " scale-0 "} ${
