@@ -1,5 +1,3 @@
-import Image from "next/image";
-import { useState, useEffect } from 'react';
 import Stopwatch from "./Stopwatch"
 export default function Home() {
   return (
